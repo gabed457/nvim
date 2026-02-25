@@ -145,7 +145,7 @@ See [KEYBINDS.md](./KEYBINDS.md) for the full reference.
 1. Install `sqlcmd` or `go-sqlcmd`
 2. Open Neovim and press `<leader>Du` to open Dadbod UI
 3. Add a connection with `:DBUIAddConnection`
-4. Connection string format: `sqlcmd://user:password@server.database.windows.net:1433/database`
+4. Connection string format: `sqlserver://server.database.windows.net:1433/database` (AD auth is enabled by default via the `-G` flag in the config)
 
 Dadbod completion is automatically active in SQL buffers.
 
