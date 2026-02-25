@@ -21,28 +21,28 @@ return {
         desc = 'Harpoon menu',
       },
       {
-        '<C-h>',
+        '<leader>1',
         function()
           require('harpoon'):list():select(1)
         end,
         desc = 'Harpoon file 1',
       },
       {
-        '<C-j>',
+        '<leader>2',
         function()
           require('harpoon'):list():select(2)
         end,
         desc = 'Harpoon file 2',
       },
       {
-        '<C-k>',
+        '<leader>3',
         function()
           require('harpoon'):list():select(3)
         end,
         desc = 'Harpoon file 3',
       },
       {
-        '<C-l>',
+        '<leader>4',
         function()
           require('harpoon'):list():select(4)
         end,

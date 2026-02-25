@@ -10,11 +10,11 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic quick
 -- Exit terminal mode
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- Better window navigation (NOTE: <C-h/j/k/l> are used by harpoon, use <C-w> prefix instead)
-map('n', '<C-w>h', '<C-w><C-h>', { desc = 'Move focus left' })
-map('n', '<C-w>l', '<C-w><C-l>', { desc = 'Move focus right' })
-map('n', '<C-w>j', '<C-w><C-j>', { desc = 'Move focus down' })
-map('n', '<C-w>k', '<C-w><C-k>', { desc = 'Move focus up' })
+-- Better window navigation
+map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus left' })
+map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus right' })
+map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus down' })
+map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus up' })
 
 -- Move lines in visual mode
 map('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
