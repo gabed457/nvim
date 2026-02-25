@@ -1,6 +1,21 @@
 return {
   -- vim-dadbod (database client)
-  { 'tpope/vim-dadbod', lazy = true },
+  {
+    'tpope/vim-dadbod',
+    lazy = true,
+    config = function()
+      -- Override sqlserver adapter to add -W (trim trailing column whitespace).
+      -- Without this, sqlcmd pads columns to their declared schema width
+      -- (e.g. NVARCHAR(255) = 255 chars wide), making output unreadable.
+      vim.cmd([[
+        call db#adapter#sqlserver#canonicalize('sqlserver://x')
+        let s:db_orig_interactive = funcref('db#adapter#sqlserver#interactive')
+        function! db#adapter#sqlserver#interactive(url) abort
+          return s:db_orig_interactive(a:url) + ['-W']
+        endfunction
+      ]])
+    end,
+  },
 
   -- Dadbod UI
   {
