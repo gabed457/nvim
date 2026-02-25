@@ -15,10 +15,11 @@ return {
     },
     init = function()
       vim.g.db_ui_use_nerd_fonts = 1
+      vim.g.db_adapter_sqlcmd_args = { '-G' }
 
       -- Preconfigure for MSSQL/Azure SQL via sqlcmd
       -- Users should set connections via env vars or :DBUIAddConnection
-      -- Example: sqlcmd://user:pass@server.database.windows.net:1433/dbname
+      -- Example: sqlcmd://server.database.windows.net:1433/dbname (uses AD auth via -G flag)
       vim.g.db_ui_save_location = vim.fn.stdpath('data') .. '/db_ui'
 
       -- Add dadbod completion to nvim-cmp for SQL buffers
