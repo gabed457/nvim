@@ -1,13 +1,12 @@
 # nvim — Backend TypeScript Neovim Config
 
-A production-ready Neovim configuration built for **backend/infrastructure engineers** working with TypeScript, Node.js, and Kubernetes. Forked from [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) and completely rewritten as a modular Lua config.
+A fast, minimal Neovim configuration built for **backend engineers** working with TypeScript and Node.js. Forked from [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) and completely rewritten as a modular Lua config.
 
 ## Who This Is For
 
 - Backend engineers writing TypeScript (Node.js, Fastify, NestJS)
-- Teams working with Kubernetes (AKS, EKS, GKE) and Helm charts
-- Developers using Azure SQL / MSSQL who want an in-editor database client
-- Anyone migrating from VS Code to Neovim and wanting a batteries-included but not bloated starting point
+- Terminal-first developers who want a fast editor, not an IDE replacement
+- Anyone migrating from VS Code to Neovim and wanting a lean starting point
 
 ## What's Included
 
@@ -23,12 +22,7 @@ A production-ready Neovim configuration built for **backend/infrastructure engin
 | **Git** | gitsigns.nvim + lazygit (toggleterm) | Inline blame, hunk staging, and a full lazygit TUI in a float |
 | **Formatting** | conform.nvim | Format on save — prettierd for TS/JSON/YAML, stylua for Lua, sql-formatter for SQL |
 | **Linting** | nvim-lint | Async eslint_d for TypeScript |
-| **Testing** | neotest + neotest-jest | Run nearest test, file tests, summary panel, output viewer |
 | **Debugging** | nvim-dap + dap-ui + vscode-js-debug | Launch/attach Node.js processes, debug Jest tests, step through TypeScript |
-| **Database** | vim-dadbod + dadbod-ui | SQL client inside Neovim — query Azure SQL/MSSQL, completion in SQL buffers |
-| **Kubernetes** | Custom telescope pickers + terminal | Switch context/namespace, get pods, stream logs, describe resources |
-| **API Testing** | Custom Bruno commands | Run `.bru` files, pick environments from a telescope picker |
-| **Security** | Custom Snyk integration | Async SAST linter + terminal commands for `snyk test` and `snyk code test` |
 | **TS Errors** | ts-error-translator.nvim | Human-readable TypeScript error messages |
 | **UI** | tokyonight, lualine, indent-blankline | Minimal — no dashboard, no tabline, no notifications, no animations |
 | **Editor** | which-key, undotree, nvim-surround, autopairs, Comment.nvim, trouble.nvim, todo-comments, package-info, fidget, auto-session | Quality-of-life essentials |
@@ -49,13 +43,9 @@ A production-ready Neovim configuration built for **backend/infrastructure engin
 | Tool | Used By | Install |
 |---|---|---|
 | [lazygit](https://github.com/jesseduffield/lazygit) | Git integration (`<leader>gg`) | `brew install lazygit` |
-| [kubectl](https://kubernetes.io/docs/tasks/tools/) | Kubernetes keybinds (`<leader>k*`) | `brew install kubectl` |
-| [Bruno CLI](https://www.usebruno.com/) | API testing (`<leader>b*`) | `npm i -g @usebruno/cli` |
-| [Snyk CLI](https://docs.snyk.io/snyk-cli/install-or-update-the-snyk-cli) | Security scanning (`<leader>s*`) | `npm i -g snyk` |
 | [prettierd](https://github.com/fsouza/prettierd) | Fast formatting | Auto-installed by Mason |
 | [eslint_d](https://github.com/mantoni/eslint_d.js) | Fast linting | Auto-installed by Mason |
 | [sql-formatter](https://github.com/sql-formatter-org/sql-formatter) | SQL formatting | Auto-installed by Mason |
-| [sqlcmd](https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility) or [go-sqlcmd](https://github.com/microsoft/go-sqlcmd) | Dadbod MSSQL connections | `brew install sqlcmd` |
 | fd | Telescope file finding (optional, faster) | `brew install fd` |
 
 ## Installation
@@ -95,7 +85,7 @@ lua/
 ├── config/
 │   ├── options.lua            -- vim.opt settings (relative numbers, persistent undo, etc.)
 │   ├── keymaps.lua            -- Non-plugin keymaps (centered scroll, line moving, etc.)
-│   └── autocmds.lua           -- Autocommands (yank highlight, .bru filetype, close with q)
+│   └── autocmds.lua           -- Autocommands (yank highlight, close with q)
 ├── plugins/
 │   ├── lsp.lua                -- typescript-tools, mason, lspconfig, SchemaStore
 │   ├── completion.lua         -- nvim-cmp, LuaSnip, copilot.vim, CopilotChat
@@ -104,12 +94,7 @@ lua/
 │   ├── git.lua                -- gitsigns, lazygit via toggleterm
 │   ├── navigation.lua         -- harpoon v2, oil.nvim
 │   ├── formatting.lua         -- conform.nvim, nvim-lint
-│   ├── testing.lua            -- neotest + neotest-jest
 │   ├── debugging.lua          -- nvim-dap + dap-ui + vscode-js-debug
-│   ├── database.lua           -- vim-dadbod + dadbod-ui
-│   ├── kubernetes.lua         -- kubectl telescope pickers + terminal commands
-│   ├── bruno.lua              -- Bruno API testing commands
-│   ├── snyk.lua               -- Snyk security integration
 │   ├── ui.lua                 -- tokyonight, lualine, indent-blankline
 │   └── editor.lua             -- which-key, undotree, surround, autopairs, etc.
 ├── snippets/
@@ -130,24 +115,10 @@ Leader key is `<Space>`. Keybinds are grouped by prefix:
 | `<leader>f` | **Find** (telescope) | `ff` files, `fg` grep, `fb` buffers, `fs` symbols |
 | `<leader>g` | **Git** | `gg` lazygit, `gs` stage hunk, `gb` blame, `gp` preview |
 | `<leader>c` | **Copilot** | `cc` chat, `ce` explain, `cr` review, `ct` tests |
-| `<leader>t` | **Test** | `tt` nearest, `tf` file, `ts` summary, `to` output |
 | `<leader>d` | **Debug** | `db` breakpoint, `dB` conditional, `dr` REPL, `dl` last |
-| `<leader>D` | **Database** | `Du` toggle Dadbod UI |
-| `<leader>k` | **Kubernetes** | `kp` pods, `kl` logs, `kd` describe, `kc` context, `kn` namespace |
-| `<leader>b` | **Bruno** | `br` run file, `be` run with env |
-| `<leader>s` | **Snyk** | `ss` dependency scan, `sc` SAST scan |
 | `<leader>x` | **Trouble** | `xx` diagnostics, `xd` buffer diagnostics |
 
 See [KEYBINDS.md](./KEYBINDS.md) for the full reference.
-
-## Database Setup (Azure SQL / MSSQL)
-
-1. Install `sqlcmd` or `go-sqlcmd`
-2. Open Neovim and press `<leader>Du` to open Dadbod UI
-3. Add a connection with `:DBUIAddConnection`
-4. Connection string format: `sqlserver://server.database.windows.net:1433/database` (AD auth is enabled by default via the `-G` flag in the config)
-
-Dadbod completion is automatically active in SQL buffers.
 
 ## Copilot Setup
 

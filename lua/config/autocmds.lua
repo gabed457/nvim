@@ -21,20 +21,10 @@ autocmd('VimResized', {
 -- Close some filetypes with q
 autocmd('FileType', {
   group = augroup('close-with-q', { clear = true }),
-  pattern = { 'help', 'man', 'qf', 'checkhealth', 'dbout' },
+  pattern = { 'help', 'man', 'qf', 'checkhealth' },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', '<cmd>close<CR>', { buffer = event.buf, silent = true })
-  end,
-})
-
--- Auto-detect .bru files
-autocmd({ 'BufRead', 'BufNewFile' }, {
-  group = augroup('bruno-filetype', { clear = true }),
-  pattern = '*.bru',
-  callback = function()
-    vim.bo.filetype = 'bru'
-    vim.bo.commentstring = '// %s'
   end,
 })
 

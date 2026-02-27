@@ -85,15 +85,6 @@ Leader key: `<Space>`
 | `<C-l>` | Harpoon: File 4 |
 | `-` | Oil: Open parent directory |
 
-## Testing (`<leader>t`)
-
-| Key | Description |
-|---|---|
-| `<leader>tt` | Run nearest test |
-| `<leader>tf` | Run file tests |
-| `<leader>ts` | Test summary panel |
-| `<leader>to` | Test output |
-
 ## Debug (`<leader>d`)
 
 | Key | Description |
@@ -106,36 +97,6 @@ Leader key: `<Space>`
 | `<leader>dB` | Conditional breakpoint |
 | `<leader>dr` | Open REPL |
 | `<leader>dl` | Run last |
-
-## Database (`<leader>D`)
-
-| Key | Description |
-|---|---|
-| `<leader>Du` | Toggle Dadbod UI |
-
-## Kubernetes (`<leader>k`)
-
-| Key | Description |
-|---|---|
-| `<leader>kp` | Get pods |
-| `<leader>kl` | Stream logs for pod |
-| `<leader>kd` | Describe resource |
-| `<leader>kc` | Switch context (telescope) |
-| `<leader>kn` | Switch namespace (telescope) |
-
-## Bruno (`<leader>b`)
-
-| Key | Description |
-|---|---|
-| `<leader>br` | Run current .bru file |
-| `<leader>be` | Run collection with env picker |
-
-## Snyk / Security (`<leader>s`)
-
-| Key | Description |
-|---|---|
-| `<leader>ss` | Snyk dependency scan |
-| `<leader>sc` | Snyk SAST scan |
 
 ## Trouble / Diagnostics (`<leader>x`)
 
