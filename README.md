@@ -141,6 +141,20 @@ On first launch, run `:Copilot setup` and authenticate with your GitHub account.
 
 ## What's NOT Included (by design)
 
+This config is built for terminal-first developers. Tools that just wrap a CLI command you can already run in a split or adjacent terminal pane are intentionally left out — they add plugin overhead without meaningful value over the real thing.
+
+**Removed CLI wrappers — use these directly in your terminal:**
+
+| Tool | What to run instead |
+|---|---|
+| Kubernetes (kubectl) | `kubectl` directly, or [k9s](https://k9scli.io/) for a TUI |
+| API testing (Bruno) | `bruno run file.bru` or `bruno run --env staging` |
+| Security scanning (Snyk) | `snyk test` / `snyk code test`, or run in CI |
+| Test runner (Jest) | `npx jest --watch` in a terminal split |
+| Debugger (Node.js) | `console.log` + `node --inspect` with Chrome DevTools |
+
+**Other intentional omissions:**
+
 - No file tree sidebar (use oil.nvim with `-` or telescope with `<leader>ff`)
 - No dashboard or start screen
 - No notification popups (noice.nvim)
