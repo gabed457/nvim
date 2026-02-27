@@ -21,7 +21,7 @@ autocmd('VimResized', {
 -- Close some filetypes with q
 autocmd('FileType', {
   group = augroup('close-with-q', { clear = true }),
-  pattern = { 'help', 'man', 'qf', 'checkhealth' },
+  pattern = { 'help', 'man', 'qf', 'checkhealth', 'dbout' },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', '<cmd>close<CR>', { buffer = event.buf, silent = true })

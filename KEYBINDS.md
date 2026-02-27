@@ -85,18 +85,11 @@ Leader key: `<Space>`
 | `<C-l>` | Harpoon: File 4 |
 | `-` | Oil: Open parent directory |
 
-## Debug (`<leader>d`)
+## Database (`<leader>D`)
 
 | Key | Description |
 |---|---|
-| `<F5>` | Continue |
-| `<F10>` | Step over |
-| `<F11>` | Step into |
-| `<F12>` | Step out |
-| `<leader>db` | Toggle breakpoint |
-| `<leader>dB` | Conditional breakpoint |
-| `<leader>dr` | Open REPL |
-| `<leader>dl` | Run last |
+| `<leader>Du` | Toggle Dadbod UI |
 
 ## Trouble / Diagnostics (`<leader>x`)
 

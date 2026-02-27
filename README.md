@@ -22,7 +22,7 @@ A fast, minimal Neovim configuration built for **backend engineers** working wit
 | **Git** | gitsigns.nvim + lazygit (toggleterm) | Inline blame, hunk staging, and a full lazygit TUI in a float |
 | **Formatting** | conform.nvim | Format on save — prettierd for TS/JSON/YAML, stylua for Lua, sql-formatter for SQL |
 | **Linting** | nvim-lint | Async eslint_d for TypeScript |
-| **Debugging** | nvim-dap + dap-ui + vscode-js-debug | Launch/attach Node.js processes, debug Jest tests, step through TypeScript |
+| **Database** | vim-dadbod + dadbod-ui | SQL client inside Neovim — query databases with completion, saved queries, readable output |
 | **TS Errors** | ts-error-translator.nvim | Human-readable TypeScript error messages |
 | **UI** | tokyonight, lualine, indent-blankline | Minimal — no dashboard, no tabline, no notifications, no animations |
 | **Editor** | which-key, undotree, nvim-surround, autopairs, Comment.nvim, trouble.nvim, todo-comments, package-info, fidget, auto-session | Quality-of-life essentials |
@@ -35,7 +35,7 @@ A fast, minimal Neovim configuration built for **backend engineers** working wit
 - **git**
 - **make** + C compiler (gcc/clang) — for telescope-fzf-native and luasnip
 - **[ripgrep](https://github.com/BurntSushi/ripgrep#installation)** — for telescope live grep
-- **Node.js >= 18** + npm — for TypeScript tooling, mason installs, and DAP
+- **Node.js >= 18** + npm — for TypeScript tooling and mason installs
 - **A [Nerd Font](https://www.nerdfonts.com/)** — icons throughout the config
 
 ### Optional (enable full feature set)
@@ -46,6 +46,7 @@ A fast, minimal Neovim configuration built for **backend engineers** working wit
 | [prettierd](https://github.com/fsouza/prettierd) | Fast formatting | Auto-installed by Mason |
 | [eslint_d](https://github.com/mantoni/eslint_d.js) | Fast linting | Auto-installed by Mason |
 | [sql-formatter](https://github.com/sql-formatter-org/sql-formatter) | SQL formatting | Auto-installed by Mason |
+| [sqlcmd](https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility) or [go-sqlcmd](https://github.com/microsoft/go-sqlcmd) | Dadbod MSSQL connections | `brew install sqlcmd` |
 | fd | Telescope file finding (optional, faster) | `brew install fd` |
 
 ## Installation
@@ -94,7 +95,7 @@ lua/
 │   ├── git.lua                -- gitsigns, lazygit via toggleterm
 │   ├── navigation.lua         -- harpoon v2, oil.nvim
 │   ├── formatting.lua         -- conform.nvim, nvim-lint
-│   ├── debugging.lua          -- nvim-dap + dap-ui + vscode-js-debug
+│   ├── database.lua           -- vim-dadbod + dadbod-ui
 │   ├── ui.lua                 -- tokyonight, lualine, indent-blankline
 │   └── editor.lua             -- which-key, undotree, surround, autopairs, etc.
 ├── snippets/
@@ -115,7 +116,7 @@ Leader key is `<Space>`. Keybinds are grouped by prefix:
 | `<leader>f` | **Find** (telescope) | `ff` files, `fg` grep, `fb` buffers, `fs` symbols |
 | `<leader>g` | **Git** | `gg` lazygit, `gs` stage hunk, `gb` blame, `gp` preview |
 | `<leader>c` | **Copilot** | `cc` chat, `ce` explain, `cr` review, `ct` tests |
-| `<leader>d` | **Debug** | `db` breakpoint, `dB` conditional, `dr` REPL, `dl` last |
+| `<leader>D` | **Database** | `Du` toggle Dadbod UI |
 | `<leader>x` | **Trouble** | `xx` diagnostics, `xd` buffer diagnostics |
 
 See [KEYBINDS.md](./KEYBINDS.md) for the full reference.
