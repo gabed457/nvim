@@ -28,16 +28,6 @@ autocmd('FileType', {
   end,
 })
 
--- Auto-detect .bru files
-autocmd({ 'BufRead', 'BufNewFile' }, {
-  group = augroup('bruno-filetype', { clear = true }),
-  pattern = '*.bru',
-  callback = function()
-    vim.bo.filetype = 'bru'
-    vim.bo.commentstring = '// %s'
-  end,
-})
-
 -- Set SQL commentstring
 autocmd('FileType', {
   group = augroup('sql-settings', { clear = true }),
