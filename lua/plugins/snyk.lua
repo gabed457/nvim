@@ -6,14 +6,14 @@ return {
     name = 'snyk-lint',
     keys = {
       {
-        '<leader>ss',
+        '<leader>Ss',
         function()
           vim.cmd('botright split | terminal snyk test')
         end,
         desc = 'Snyk: Dependency scan',
       },
       {
-        '<leader>sc',
+        '<leader>Sc',
         function()
           vim.cmd('botright split | terminal snyk code test')
         end,
@@ -67,7 +67,7 @@ return {
       }
 
       -- NOTE: Snyk SAST is NOT auto-triggered on save due to its slow speed.
-      -- Run it manually via <leader>sc or explicitly by adding it:
+      -- Run it manually via <leader>Sc or explicitly by adding it:
       -- lint.linters_by_ft.typescript = vim.list_extend(lint.linters_by_ft.typescript or {}, { 'snyk_code' })
     end,
   },

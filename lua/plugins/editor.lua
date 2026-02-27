@@ -7,13 +7,13 @@ return {
       delay = 0,
       icons = { mappings = true },
       spec = {
-        { '<leader>f', group = 'Find' },
+        { '<leader>s', group = 'Search' },
         { '<leader>g', group = 'Git' },
         { '<leader>c', group = 'Copilot' },
         { '<leader>d', group = 'Debug' },
         { '<leader>D', group = 'Database' },
         { '<leader>t', group = 'Test' },
-        { '<leader>s', group = 'Snyk/Security' },
+        { '<leader>S', group = 'Snyk/Security' },
         { '<leader>b', group = 'Bruno' },
         { '<leader>k', group = 'Kubernetes' },
         { '<leader>x', group = 'Trouble/Swap' },
@@ -82,7 +82,7 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = false },
     keys = {
-      { '<leader>ft', '<cmd>TodoTelescope<CR>', desc = 'Find TODOs' },
+      { '<leader>st', '<cmd>TodoTelescope<CR>', desc = 'Find TODOs' },
     },
   },
 
