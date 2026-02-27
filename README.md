@@ -113,7 +113,7 @@ Leader key is `<Space>`. Keybinds are grouped by prefix:
 
 | Prefix | Category | Examples |
 |---|---|---|
-| `<leader>f` | **Find** (telescope) | `ff` files, `fg` grep, `fb` buffers, `fs` symbols |
+| `<leader>s` | **Search** (telescope) | `sf` files, `sg` grep, `sb` buffers, `ss` symbols |
 | `<leader>g` | **Git** | `gg` lazygit, `gs` stage hunk, `gb` blame, `gp` preview |
 | `<leader>c` | **Copilot** | `cc` chat, `ce` explain, `cr` review, `ct` tests |
 | `<leader>D` | **Database** | `Du` toggle Dadbod UI |
@@ -141,27 +141,28 @@ On first launch, run `:Copilot setup` and authenticate with your GitHub account.
 
 ## What's NOT Included (by design)
 
-This config is built for terminal-first developers. Tools that just wrap a CLI command you can already run in a split or adjacent terminal pane are intentionally left out — they add plugin overhead without meaningful value over the real thing.
+This config is built for terminal-first developers. Tools that wrap CLI commands you can already run in a terminal split are left out — they add plugin overhead without meaningful value.
 
-**Removed CLI wrappers — use these directly in your terminal:**
+**Use these directly in your terminal:**
 
 | Tool | What to run instead |
 |---|---|
-| Kubernetes (kubectl) | `kubectl` directly, or [k9s](https://k9scli.io/) for a TUI |
-| API testing (Bruno) | `bruno run file.bru` or `bruno run --env staging` |
-| Security scanning (Snyk) | `snyk test` / `snyk code test`, or run in CI |
-| Test runner (Jest) | `npx jest --watch` in a terminal split |
-| Debugger (Node.js) | `console.log` + `node --inspect` with Chrome DevTools |
+| Kubernetes | `kubectl` directly, or [k9s](https://k9scli.io/) for a TUI |
+| API testing | `bruno run file.bru` or `bruno run --env staging` |
+| Security scanning | `snyk test` / `snyk code test`, or run in CI |
+| Test runner | `npx jest --watch` in a terminal split |
+| Debugger | `console.log` + `node --inspect` with Chrome DevTools |
 
 **Other intentional omissions:**
 
-- No file tree sidebar (use oil.nvim with `-` or telescope with `<leader>ff`)
+- No file tree sidebar (use oil.nvim with `-` or telescope with `<leader>sf`)
 - No dashboard or start screen
 - No notification popups (noice.nvim)
 - No tabline / bufferline
 - No multiple cursors
 - No animations
 - No markdown preview
+- No nvim-dap (Chrome DevTools is better for Node.js — memory profiling, heap snapshots, network inspection)
 
 ## Troubleshooting
 
