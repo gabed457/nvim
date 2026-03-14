@@ -100,6 +100,12 @@ Leader key: `<Space>`
 | `<leader>xp` | Swap parameter forward |
 | `<leader>xP` | Swap parameter backward |
 
+## Neovim (`<leader>n`)
+
+| Key | Description |
+|---|---|
+| `<leader>nu` | Update Neovim config from remote |
+
 ## Editor
 
 | Key | Description |
