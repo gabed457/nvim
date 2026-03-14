@@ -13,6 +13,7 @@ return {
         { '<leader>D', group = 'Database' },
         { '<leader>x', group = 'Trouble/Swap' },
         { '<leader>r', group = 'Rename' },
+        { '<leader>n', group = 'Neovim' },
       },
     },
   },
