@@ -4,14 +4,18 @@ return {
     'tpope/vim-dadbod',
     lazy = true,
     config = function()
-      -- Override sqlserver adapter to add -W (trim trailing column whitespace).
-      -- Without this, sqlcmd pads columns to their declared schema width
-      -- (e.g. NVARCHAR(255) = 255 chars wide), making output unreadable.
+      -- Override sqlserver adapter to add:
+      --   -G  Azure AD / Entra ID interactive auth (personal login, no SQL password)
+      --   -W  Trim trailing column whitespace (sqlcmd pads to schema width otherwise)
       vim.cmd([[
         call db#adapter#sqlserver#canonicalize('sqlserver://x')
         let s:db_orig_interactive = funcref('db#adapter#sqlserver#interactive')
         function! db#adapter#sqlserver#interactive(url) abort
-          return s:db_orig_interactive(a:url) + ['-W']
+          return s:db_orig_interactive(a:url) + ['-G', '-W']
+        endfunction
+        let s:db_orig_input = funcref('db#adapter#sqlserver#input')
+        function! db#adapter#sqlserver#input(url, in) abort
+          return s:db_orig_input(a:url, a:in) + ['-G', '-W']
         endfunction
       ]])
     end,
@@ -30,11 +34,9 @@ return {
     },
     init = function()
       vim.g.db_ui_use_nerd_fonts = 1
-      vim.g.db_adapter_sqlserver_args = { '-G' }
-
-      -- Preconfigure for MSSQL/Azure SQL via sqlserver adapter (uses sqlcmd CLI)
-      -- Users should set connections via env vars or :DBUIAddConnection
-      -- Example: sqlserver://server.database.windows.net:1433/dbname (uses AD auth via -G flag)
+      -- Azure SQL connections use Entra ID personal auth (-G flag injected in adapter override)
+      -- Add connections via :DBUIAddConnection with URL: sqlserver://server.database.windows.net:1433/dbname
+      -- No username/password needed — sqlcmd will prompt for Azure AD interactive login
       vim.g.db_ui_save_location = vim.fn.stdpath('data') .. '/db_ui'
 
       -- Add dadbod completion to nvim-cmp for SQL buffers
