@@ -59,7 +59,18 @@ return {
     'stevearc/oil.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
-      { '<leader>-', function() require('oil').open(vim.fn.getcwd()) end, desc = 'Open file explorer (cwd)' },
+      {
+        '<leader>e',
+        function()
+          local oil = require('oil')
+          if vim.bo.filetype == 'oil' then
+            oil.close()
+          else
+            oil.open(vim.fn.getcwd())
+          end
+        end,
+        desc = 'Toggle file explorer (cwd)',
+      },
     },
     opts = {
       default_file_explorer = true,
