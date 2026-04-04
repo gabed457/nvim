@@ -38,6 +38,7 @@ return {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Resume last search' })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help tags' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'Grep word under cursor' })
+      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Open buffers' })
 
       vim.keymap.set('n', '<leader>/', function()
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({

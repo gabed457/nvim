@@ -13,6 +13,7 @@ Leader key: `<Space>`
 | `<C-u>` | Scroll up (centered) |
 | `J` (visual) | Move selection down |
 | `K` (visual) | Move selection up |
+| `<leader><leader>` | Open buffers |
 | `<leader>/` | Fuzzy search in current buffer |
 
 ## Find / Telescope (`<leader>f`)
@@ -29,7 +30,6 @@ Leader key: `<Space>`
 | `<leader>fr` | Resume last search |
 | `<leader>fh` | Help tags |
 | `<leader>fw` | Grep word under cursor |
-| `<leader>ft` | Find TODOs |
 
 ## LSP
 
@@ -62,17 +62,6 @@ Leader key: `<Space>`
 | `]c` | Next hunk |
 | `[c` | Previous hunk |
 
-## Copilot (`<leader>c`)
-
-| Key | Description |
-|---|---|
-| `<Tab>` | Accept Copilot suggestion (insert mode) |
-| `<S-Tab>` | Next Copilot suggestion (insert mode) |
-| `<leader>cc` | Open Copilot Chat |
-| `<leader>ce` | Copilot explain selection |
-| `<leader>cr` | Copilot review selection |
-| `<leader>ct` | Copilot generate tests |
-
 ## Navigation
 
 | Key | Description |
@@ -83,13 +72,8 @@ Leader key: `<Space>`
 | `<C-j>` | Harpoon: File 2 |
 | `<C-k>` | Harpoon: File 3 |
 | `<C-l>` | Harpoon: File 4 |
+| `<leader>e` | Oil: Toggle file explorer (current file dir) |
 | `-` | Oil: Open parent directory |
-
-## Database (`<leader>D`)
-
-| Key | Description |
-|---|---|
-| `<leader>Du` | Toggle Dadbod UI |
 
 ## Trouble / Diagnostics (`<leader>x`)
 
@@ -110,6 +94,7 @@ Leader key: `<Space>`
 
 | Key | Description |
 |---|---|
+| `<leader>ct` | Toggle cloak (hide .env values) |
 | `<leader>u` | Toggle undotree |
 | `gcc` | Toggle line comment |
 | `gc` (visual) | Toggle comment |

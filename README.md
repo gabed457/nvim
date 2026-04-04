@@ -13,19 +13,17 @@ A fast, minimal Neovim configuration built for **backend engineers** working wit
 | Category | Plugins | What It Does |
 |---|---|---|
 | **TypeScript LSP** | typescript-tools.nvim | Fast TS language server (not tsserver via lspconfig) — rename, organize imports, diagnostics |
-| **Other LSPs** | nvim-lspconfig + mason | jsonls, yamlls, dockerls, helm_ls, graphql, bashls, sqlls, lua_ls — all auto-installed |
-| **Schema Validation** | SchemaStore.nvim | Auto-applies JSON/YAML schemas for package.json, tsconfig, k8s manifests, docker-compose, CI configs |
+| **Other LSPs** | nvim-lspconfig + mason | jsonls, yamlls, dockerls, graphql, bashls, sqlls, lua_ls — all auto-installed |
+| **Schema Validation** | SchemaStore.nvim | Auto-applies JSON/YAML schemas for package.json, tsconfig, docker-compose, CI configs |
 | **Completion** | nvim-cmp + LuaSnip | LSP, buffer, path, and snippet completion sources |
-| **AI** | copilot.vim + CopilotChat.nvim | GitHub Copilot inline suggestions (enterprise-compatible) + chat/review/explain/test generation |
-| **Treesitter** | nvim-treesitter + textobjects | Syntax highlighting and text objects for 20 languages (TS, JSON, YAML, SQL, Dockerfile, Helm, etc.) |
+| **Treesitter** | nvim-treesitter + textobjects | Syntax highlighting and text objects for 20 languages (TS, JSON, YAML, SQL, Dockerfile, etc.) |
 | **Navigation** | telescope.nvim, harpoon v2, oil.nvim | Fuzzy finding, fast file switching, filesystem editing as a buffer |
 | **Git** | gitsigns.nvim + lazygit (toggleterm) | Inline blame, hunk staging, and a full lazygit TUI in a float |
 | **Formatting** | conform.nvim | Format on save — prettierd for TS/JSON/YAML, stylua for Lua, sql-formatter for SQL |
 | **Linting** | nvim-lint | Async eslint_d for TypeScript |
-| **Database** | vim-dadbod + dadbod-ui | SQL client inside Neovim — query databases with completion, saved queries, readable output |
 | **TS Errors** | ts-error-translator.nvim | Human-readable TypeScript error messages |
 | **UI** | tokyonight, lualine, indent-blankline | Minimal — no dashboard, no tabline, no notifications, no animations |
-| **Editor** | which-key, undotree, nvim-surround, autopairs, Comment.nvim, trouble.nvim, todo-comments, package-info, fidget, auto-session | Quality-of-life essentials |
+| **Editor** | which-key, undotree, nvim-surround, autopairs, Comment.nvim, trouble.nvim, fidget, auto-session, cloak.nvim | Quality-of-life essentials |
 
 ## Requirements
 
@@ -46,7 +44,6 @@ A fast, minimal Neovim configuration built for **backend engineers** working wit
 | [prettierd](https://github.com/fsouza/prettierd) | Fast formatting | Auto-installed by Mason |
 | [eslint_d](https://github.com/mantoni/eslint_d.js) | Fast linting | Auto-installed by Mason |
 | [sql-formatter](https://github.com/sql-formatter-org/sql-formatter) | SQL formatting | Auto-installed by Mason |
-| [sqlcmd](https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility) or [go-sqlcmd](https://github.com/microsoft/go-sqlcmd) | Dadbod MSSQL connections | `brew install sqlcmd` |
 | fd | Telescope file finding (optional, faster) | `brew install fd` |
 
 ## Installation
@@ -89,19 +86,17 @@ lua/
 │   └── autocmds.lua           -- Autocommands (yank highlight, close with q)
 ├── plugins/
 │   ├── lsp.lua                -- typescript-tools, mason, lspconfig, SchemaStore
-│   ├── completion.lua         -- nvim-cmp, LuaSnip, copilot.vim, CopilotChat
+│   ├── completion.lua         -- nvim-cmp, LuaSnip
 │   ├── treesitter.lua         -- Treesitter config + textobjects
 │   ├── telescope.lua          -- Telescope + extensions
 │   ├── git.lua                -- gitsigns, lazygit via toggleterm
 │   ├── navigation.lua         -- harpoon v2, oil.nvim
 │   ├── formatting.lua         -- conform.nvim, nvim-lint
-│   ├── database.lua           -- vim-dadbod + dadbod-ui
 │   ├── ui.lua                 -- tokyonight, lualine, indent-blankline
 │   └── editor.lua             -- which-key, undotree, surround, autopairs, etc.
 ├── snippets/
 │   ├── typescript.lua         -- Async handlers, try-catch, describe/it, Fastify, NestJS
-│   ├── sql.lua                -- SELECT, INSERT, UPDATE, CTE, JOIN, MSSQL TOP
-│   └── yaml.lua               -- K8s Deployment, Service, Pod, ConfigMap
+│   └── sql.lua                -- SELECT, INSERT, UPDATE, CTE, JOIN, MSSQL TOP
 KEYBINDS.md                    -- Complete keybind reference
 ```
 
@@ -113,19 +108,13 @@ Leader key is `<Space>`. Keybinds are grouped by prefix:
 
 | Prefix | Category | Examples |
 |---|---|---|
+| `<leader><leader>` | **Buffers** | Open buffer picker |
 | `<leader>s` | **Search** (telescope) | `sf` files, `sg` grep, `sb` buffers, `ss` symbols |
 | `<leader>g` | **Git** | `gg` lazygit, `gs` stage hunk, `gb` blame, `gp` preview |
-| `<leader>c` | **Copilot** | `cc` chat, `ce` explain, `cr` review, `ct` tests |
-| `<leader>D` | **Database** | `Du` toggle Dadbod UI |
+| `<leader>c` | **Code/Cloak** | `ca` code action, `ct` toggle cloak |
 | `<leader>x` | **Trouble** | `xx` diagnostics, `xd` buffer diagnostics |
 
 See [KEYBINDS.md](./KEYBINDS.md) for the full reference.
-
-## Copilot Setup
-
-This config uses `copilot.vim` (the official GitHub plugin), **not** `copilot.lua`. This is intentional — enterprise GitHub Copilot licenses require the official plugin for auth compliance.
-
-On first launch, run `:Copilot setup` and authenticate with your GitHub account.
 
 ## Customizing
 
@@ -147,6 +136,9 @@ This config is built for terminal-first developers. Tools that wrap CLI commands
 
 | Tool | What to run instead |
 |---|---|
+| AI assistance | [Claude Code](https://claude.com/claude-code) or [OpenCode](https://github.com/opencode-ai/opencode) in a separate terminal pane |
+| Database queries | `dbx` or your preferred database CLI — SQL editing stays in Neovim |
+| HTTP requests | `bx` (Bruno CLI) or `curl` |
 | Kubernetes | `kubectl` directly, or [k9s](https://k9scli.io/) for a TUI |
 | API testing | `bruno run file.bru` or `bruno run --env staging` |
 | Security scanning | `snyk test` / `snyk code test`, or run in CI |
@@ -155,7 +147,7 @@ This config is built for terminal-first developers. Tools that wrap CLI commands
 
 **Other intentional omissions:**
 
-- No file tree sidebar (use oil.nvim with `-` or telescope with `<leader>sf`)
+- No file tree sidebar (use oil.nvim with `<leader>e` or telescope with `<leader>sf`)
 - No dashboard or start screen
 - No notification popups (noice.nvim)
 - No tabline / bufferline

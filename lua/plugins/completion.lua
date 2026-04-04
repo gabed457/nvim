@@ -60,44 +60,6 @@ return {
       })
     end,
   },
-
-  -- GitHub Copilot (official vim plugin for enterprise auth)
-  {
-    'github/copilot.vim',
-    event = 'InsertEnter',
-    config = function()
-      -- Tab to accept, don't conflict with cmp
-      vim.g.copilot_no_tab_map = true
-      vim.keymap.set('i', '<Tab>', 'copilot#Accept("\\<Tab>")', {
-        expr = true,
-        replace_keycodes = false,
-        silent = true,
-      })
-      vim.keymap.set('i', '<S-Tab>', '<Plug>(copilot-next)', { silent = true })
-    end,
-  },
-
-  -- Copilot Chat
-  {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    dependencies = {
-      'github/copilot.vim',
-      'nvim-lua/plenary.nvim',
-    },
-    cmd = {
-      'CopilotChat',
-      'CopilotChatExplain',
-      'CopilotChatReview',
-      'CopilotChatTests',
-    },
-    keys = {
-      { '<leader>cc', '<cmd>CopilotChat<CR>', desc = 'Copilot Chat' },
-      { '<leader>ce', '<cmd>CopilotChatExplain<CR>', mode = { 'n', 'v' }, desc = 'Copilot explain' },
-      { '<leader>cr', '<cmd>CopilotChatReview<CR>', mode = { 'n', 'v' }, desc = 'Copilot review' },
-      { '<leader>ct', '<cmd>CopilotChatTests<CR>', mode = { 'n', 'v' }, desc = 'Copilot generate tests' },
-    },
-    opts = {},
-  },
 }
 
 -- vim: ts=2 sts=2 sw=2 et

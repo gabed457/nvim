@@ -16,7 +16,6 @@ return {
           'yaml',
           'sql',
           'dockerfile',
-          'helm',
           'graphql',
           'bash',
           'lua',
