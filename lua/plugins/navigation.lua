@@ -66,7 +66,7 @@ return {
           if vim.bo.filetype == 'oil' then
             oil.close()
           else
-            oil.open(vim.fn.getcwd())
+            oil.open()
           end
         end,
         desc = 'Toggle file explorer (cwd)',

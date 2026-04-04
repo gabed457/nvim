@@ -111,8 +111,8 @@ return {
           },
         },
         dockerls = {},
-        helm_ls = {},
         graphql = {},
+        marksman = {},
         bashls = {},
         sqlls = {},
         lua_ls = {
@@ -151,6 +151,9 @@ return {
           end,
         },
       })
+
+      -- Re-trigger FileType for already-opened buffers so LSP attaches on first buffer
+      vim.api.nvim_exec_autocmds('FileType', { buffer = vim.api.nvim_get_current_buf() })
     end,
   },
 

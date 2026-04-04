@@ -9,8 +9,7 @@ return {
       spec = {
         { '<leader>s', group = 'Search' },
         { '<leader>g', group = 'Git' },
-        { '<leader>c', group = 'Copilot' },
-        { '<leader>D', group = 'Database' },
+        { '<leader>c', group = 'Code' },
         { '<leader>x', group = 'Trouble/Swap' },
         { '<leader>r', group = 'Rename' },
         { '<leader>n', group = 'Neovim' },
@@ -71,30 +70,6 @@ return {
     opts = {},
   },
 
-  -- Todo-comments: highlight TODO/FIXME/HACK/NOTE
-  {
-    'folke/todo-comments.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
-    keys = {
-      { '<leader>st', '<cmd>TodoTelescope<CR>', desc = 'Find TODOs' },
-    },
-  },
-
-  -- Package-info: show versions in package.json
-  {
-    'vuki656/package-info.nvim',
-    dependencies = { 'MunifTanjim/nui.nvim' },
-    ft = 'json',
-    config = function()
-      require('package-info').setup({
-        autostart = true,
-        hide_up_to_date = true,
-      })
-    end,
-  },
-
   -- Fidget: LSP progress indicator
   {
     'j-hui/fidget.nvim',
@@ -117,8 +92,26 @@ return {
     },
   },
 
-  -- Guess indent
-  { 'NMAC427/guess-indent.nvim', event = 'BufReadPre', opts = {} },
+  -- Cloak: hide sensitive values in .env files
+  {
+    'laytan/cloak.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {
+      cloak_character = '*',
+      highlight_group = 'Comment',
+      patterns = {
+        {
+          file_pattern = '.env*',
+          cloak_pattern = '=.+',
+          replace = nil,
+        },
+      },
+    },
+    keys = {
+      { '<leader>ct', '<cmd>CloakToggle<CR>', desc = 'Toggle cloak' },
+    },
+  },
+
 }
 
 -- vim: ts=2 sts=2 sw=2 et
