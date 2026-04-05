@@ -55,6 +55,38 @@ return {
     },
   },
 
+  -- Diffview for side-by-side diffs
+  {
+    'sindrets/diffview.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
+    keys = {
+      { '<leader>gv', '<cmd>DiffviewOpen<CR>', desc = 'Git: Diff unstaged' },
+      { '<leader>gc', '<cmd>DiffviewOpen --staged<CR>', desc = 'Git: Diff staged' },
+      { '<leader>gf', '<cmd>DiffviewFileHistory %<CR>', desc = 'Git: File history' },
+      { '<leader>gq', '<cmd>DiffviewClose<CR>', desc = 'Git: Close diff' },
+    },
+    opts = {
+      enhanced_diff_hl = true,
+      view = {
+        default = { layout = 'diff2_horizontal' },
+        merge_tool = { layout = 'diff3_mixed' },
+      },
+      file_panel = {
+        listing_style = 'list',
+        win_config = { width = 35 },
+      },
+      keymaps = {
+        view = {
+          { 'n', 'q', '<cmd>DiffviewClose<CR>', { desc = 'Close diffview' } },
+        },
+        file_panel = {
+          { 'n', 'q', '<cmd>DiffviewClose<CR>', { desc = 'Close diffview' } },
+        },
+      },
+    },
+  },
+
   -- Lazygit integration via terminal
   {
     'akinsho/toggleterm.nvim',
