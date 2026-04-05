@@ -1,22 +1,4 @@
 return {
-  -- Which-key: keybind hints
-  {
-    'folke/which-key.nvim',
-    event = 'VimEnter',
-    opts = {
-      delay = 0,
-      icons = { mappings = true },
-      spec = {
-        { '<leader>s', group = 'Search' },
-        { '<leader>g', group = 'Git' },
-        { '<leader>c', group = 'Code' },
-        { '<leader>x', group = 'Trouble/Swap' },
-        { '<leader>r', group = 'Rename' },
-        { '<leader>n', group = 'Neovim' },
-      },
-    },
-  },
-
   -- Undotree: persistent undo visualization
   {
     'mbbill/undotree',
@@ -58,31 +40,6 @@ return {
     opts = {},
   },
 
-  -- Trouble: better diagnostics list
-  {
-    'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    cmd = 'Trouble',
-    keys = {
-      { '<leader>xx', '<cmd>Trouble diagnostics toggle<CR>', desc = 'Trouble: Toggle diagnostics' },
-      { '<leader>xd', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', desc = 'Trouble: Buffer diagnostics' },
-    },
-    opts = {},
-  },
-
-  -- Fidget: LSP progress indicator
-  {
-    'j-hui/fidget.nvim',
-    event = 'LspAttach',
-    opts = {
-      notification = {
-        window = {
-          winblend = 0,
-        },
-      },
-    },
-  },
-
   -- Auto-session: restore sessions
   {
     'rmagatti/auto-session',
@@ -111,7 +68,6 @@ return {
       { '<leader>ct', '<cmd>CloakToggle<CR>', desc = 'Toggle cloak' },
     },
   },
-
 }
 
 -- vim: ts=2 sts=2 sw=2 et
