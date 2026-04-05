@@ -163,6 +163,18 @@ return {
     ft = { 'typescript', 'typescriptreact' },
     opts = {},
   },
+
+  -- Trouble: better diagnostics list
+  {
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    cmd = 'Trouble',
+    keys = {
+      { '<leader>xx', '<cmd>Trouble diagnostics toggle<CR>', desc = 'Trouble: Toggle diagnostics' },
+      { '<leader>xd', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', desc = 'Trouble: Buffer diagnostics' },
+    },
+    opts = {},
+  },
 }
 
 -- vim: ts=2 sts=2 sw=2 et

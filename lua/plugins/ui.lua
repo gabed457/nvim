@@ -1,4 +1,35 @@
 return {
+  -- Which-key: keybind hints
+  {
+    'folke/which-key.nvim',
+    event = 'VimEnter',
+    opts = {
+      delay = 0,
+      icons = { mappings = true },
+      spec = {
+        { '<leader>s', group = 'Search' },
+        { '<leader>g', group = 'Git' },
+        { '<leader>c', group = 'Code' },
+        { '<leader>x', group = 'Trouble/Swap' },
+        { '<leader>r', group = 'Rename' },
+        { '<leader>n', group = 'Neovim' },
+      },
+    },
+  },
+
+  -- Fidget: LSP progress indicator
+  {
+    'j-hui/fidget.nvim',
+    event = 'LspAttach',
+    opts = {
+      notification = {
+        window = {
+          winblend = 0,
+        },
+      },
+    },
+  },
+
   -- Colorscheme: tokyonight (night variant)
   {
     'folke/tokyonight.nvim',

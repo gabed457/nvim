@@ -37,4 +37,15 @@ autocmd('FileType', {
   end,
 })
 
+-- Lint on enter, save, and leaving insert
+autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+  group = augroup('lint', { clear = true }),
+  callback = function()
+    local ok, lint = pcall(require, 'lint')
+    if ok then
+      lint.try_lint()
+    end
+  end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et
