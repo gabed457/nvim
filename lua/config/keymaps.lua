@@ -32,7 +32,8 @@ map('n', 'N', 'Nzzzv')
 map('n', '<leader>nu', function()
   local config_dir = vim.fn.stdpath('config')
   vim.notify('Updating Neovim config...', vim.log.levels.INFO)
-  vim.fn.jobstart({ 'git', '-C', config_dir, 'pull', 'origin', 'main' }, {
+  -- Pull whatever branch this repo tracks (master here), not a hardcoded name
+  vim.fn.jobstart({ 'git', '-C', config_dir, 'pull', '--ff-only' }, {
     stdout_buffered = true,
     stderr_buffered = true,
     on_exit = function(_, code)

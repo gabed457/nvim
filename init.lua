@@ -14,6 +14,9 @@ require('config.options')
 require('config.keymaps')
 require('config.autocmds')
 
+-- Interactive tutorial (:Tutorial / <leader>?)
+require('tutorial').setup()
+
 -- Diagnostic config
 vim.diagnostic.config({
   update_in_insert = false,
