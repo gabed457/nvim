@@ -75,6 +75,10 @@ Lazy.nvim will automatically install all plugins on first launch. Mason will ins
 
 Run `:checkhealth` inside Neovim to confirm everything is working. Run `:Mason` to see installed language servers and tools.
 
+### 5. Learn the config — interactive tutorial
+
+New to this setup? Run **`:Tutorial`** (or press **`<leader>?`**) inside Neovim for a fun, colorful, hands-on tour. It's a 12-lesson guided menu — search, files, LSP, git, snippets, and more — built entirely from *these* keybinds. Navigate with `j`/`k`, open a lesson with `<CR>`, jump with number keys, and `q` to quit. No prior Vim knowledge required.
+
 ## Config Structure
 
 ```
@@ -97,6 +101,8 @@ lua/
 ├── snippets/
 │   ├── typescript.lua         -- Async handlers, try-catch, describe/it, Fastify, NestJS
 │   └── sql.lua                -- SELECT, INSERT, UPDATE, CTE, JOIN, MSSQL TOP
+└── tutorial/
+    └── init.lua               -- Interactive :Tutorial / <leader>? guided tour
 KEYBINDS.md                    -- Complete keybind reference
 ```
 

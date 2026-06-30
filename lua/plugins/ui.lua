@@ -13,6 +13,7 @@ return {
         { '<leader>x', group = 'Trouble/Swap' },
         { '<leader>r', group = 'Rename' },
         { '<leader>n', group = 'Neovim' },
+        { '<leader>?', desc = 'Open tutorial' },
       },
     },
   },
